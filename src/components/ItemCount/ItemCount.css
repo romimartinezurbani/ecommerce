@@ -1,0 +1,25 @@
+.btn {
+
+    background-color: #0461f8;
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    border: none;
+
+    font-size: 17px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.btnagregar {
+ 
+    background-color: #0461f8;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    border: none;
+
+    font-size: 17px;
+    font-weight: 300;
+    cursor: pointer;
+}

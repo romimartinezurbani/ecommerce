@@ -1,4 +1,4 @@
-import cart from './assets/descarga.png'
+import cart from './assets/carrito.png'
 
 
 
@@ -7,7 +7,7 @@ const CartWidget = () => {
     return (
     <div>
         
-        <img src="descarga" alt="" width="25" height="24
+        <img src="./assets/carrito.png" alt="" width="25" height="24
         "/>
         0
 
