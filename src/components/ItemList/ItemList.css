@@ -1,0 +1,28 @@
+/* Estilos generales */
+.ListGroup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Estilos para cada elemento de la lista */
+  .ListGroup .Item {
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 20px);
+  }
+  
+  /* Estilos para cada elemento de la lista en dispositivos móviles */
+  @media (max-width: 768px) {
+    .ListGroup .Item {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  
+  
+  

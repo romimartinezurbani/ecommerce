@@ -1,17 +1,21 @@
+import huevos from './components/CartWidget/assets/huevos.png'
+import pollo from './components/CartWidget/assets/pollo.png'
+import milanesas from './components/CartWidget/assets/milanesas.png'
+
 
 const products = [
     {
         id: "1",
         product: "Huevos",
         price: 4500,
-        image: "components/CartWidget/assets/huevos.png",
+        image: <img src={huevos} alt="" /> ,
         category: "Huevos",
         stock: "25 maples",
         descripcion: "Maple de Huevos"
     },
 
-    { id: "2", product: "Pollo", price: "3000 el kilo", image: <img src="components/CartWidget/assets/pollo.png" alt=""/>,category: "Pollo",stock: "30 kilos", descripcion: "Pollo entero" },
-    { id: "3", product: "Milanesas", price: "5500 el kilo", image: <img src="components/CartWidget/assets/milanesas.png" alt=""/>, category: "Cerdo",stock: "20 kilos", descripcion: "Milanesas de cerdo" },
+    { id: "2", product: "Pollo", price: "3000 el kilo", image: <img src={pollo} alt=""/>,category: "Pollo",stock: "30 kilos", descripcion: "Pollo entero" },
+    { id: "3", product: "Milanesas", price: "5500 el kilo", image: <img src={milanesas} alt=""/>, category: "Cerdo",stock: "20 kilos", descripcion: "Milanesas de cerdo" },
 
 
 ]
