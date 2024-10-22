@@ -1,28 +1,39 @@
+
 /* Estilos generales */
 .ListGroup {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-  }
-  
-  /* Estilos para cada elemento de la lista */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  font-family: Hey August;
+  font-size: 16 px;
+  font-weight: normal;
+  background-color: #752218; /* Color de fondo */
+  color: #070707; /* Color de letra */
+}
+
+/* Estilos para cada elemento de la lista */
+.ListGroup .Item {
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: calc(33.33% - 20px);
+  font-size: normal;
+  text-align: center;
+  background-color: #F188E7; /* Color de fondo para cada elemento */
+  color: #070707; /* Color de letra para cada elemento */
+}
+
+/* Estilos para cada elemento de la lista en dispositivos móviles */
+@media (max-width: 768px) {
   .ListGroup .Item {
-    margin: 10px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: calc(33.33% - 20px);
+    width: 100%;
+    margin-bottom: 20px;
   }
-  
-  /* Estilos para cada elemento de la lista en dispositivos móviles */
-  @media (max-width: 768px) {
-    .ListGroup .Item {
-      width: 100%;
-      margin-bottom: 20px;
-    }
-  }
+}
+
   
   
   

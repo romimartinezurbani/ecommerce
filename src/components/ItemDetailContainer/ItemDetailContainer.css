@@ -1,0 +1,39 @@
+/* Estilos generales */
+.ItemDetailContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #752218;;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para el título del producto */
+  .ItemDetailContainer h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para la imagen del producto */
+  .ItemDetailContainer img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+  }
+/* Estilos para la descripción del producto */
+.ItemDetailContainer p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para el precio del producto */
+  .ItemDetailContainer .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+    

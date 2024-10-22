@@ -3,13 +3,13 @@ import CartWidget from "../CartWidget/CartWidget"
 import { Link, NavLink } from 'react-router-dom';
 
 
-
 const NavBar = () => {
 
   return (
     <nav className='NavBar'>
       <Link to='/'>
       <h3>Cooperativa La Soberana</h3>
+
       </Link>
       <div className='Categories'>
         <NavLink to={`/category/Huevos`} className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}>Huevos</NavLink>
