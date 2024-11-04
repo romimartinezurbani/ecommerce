@@ -1,11 +1,11 @@
 .contenedor-botones {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: transparent;
-  }
-  
-  .btn-incrementar, .btn-decrementar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px; /* espaciado entre botones */
+  align-items: center;
+}
+
+  .btn-incrementar {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -16,8 +16,22 @@
     background-color: transparent; /* Fondo transparente */
     color: #333; /* Color del texto */
     border: 1px solid #333; /* Borde */
+    position: absolute; top: 0; left: 0;
   }
   
+  .btn-decrementar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: transparent; /* Fondo transparente */
+    color: #333; /* Color del texto */
+    border: 1px solid #333; /* Borde */
+    position: absolute; top: 0; right: 0;
+  }
   
   
   .btn-agregar {

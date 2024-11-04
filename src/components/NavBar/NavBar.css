@@ -11,7 +11,8 @@
     margin: 0;
     font-weight: bold;
     color: #f6f5fa;
-    font-family: ;
+    display: inline-block;
+    vertical-align: middle;
   }
   
   .Categories {
@@ -41,5 +42,12 @@
   
   .CartWidget {
     margin-left: 20px;
+  }
+
+  .logo {
+    max-width: 75px;
+    max-height: 75px;
+    display: inline-block;
+    vertical-align: middle;
   }
     

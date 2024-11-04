@@ -1,6 +1,8 @@
 import huevos from './components/CartWidget/assets/huevos.png'
 import pollo from './components/CartWidget/assets/pollo.png'
 import milanesas from './components/CartWidget/assets/milanesas.png'
+import quesosardopim from './components/CartWidget/assets/Queso Sardo con pimienta.jpg'
+import quesocremoso from './components/CartWidget/assets/Queso Cremoso.jpeg'
 
 
 const products = [
@@ -10,13 +12,14 @@ const products = [
         price: 4500,
         image: <img src={huevos} alt="" /> ,
         category: "Huevos",
-        stock: "25 maples",
+        stock: 25,
         descripcion: "Maple de Huevos"
     },
 
-    { id: "2", product: "Pollo", price: "3000 el kilo", image: <img src={pollo} alt=""/>,category: "Pollo",stock: "30 kilos", descripcion: "Pollo entero" },
-    { id: "3", product: "Milanesas", price: "5500 el kilo", image: <img src={milanesas} alt=""/>, category: "Cerdo",stock: "20 kilos", descripcion: "Milanesas de cerdo" },
-
+    { id: "2", product: "Pollo", price: 3000, image: <img src={pollo} alt=""/>,category: "Pollo",stock: 30, descripcion: "Pollo entero" },
+    { id: "3", product: "Milanesas de cerdo", price: 5500, image: <img src={milanesas} alt=""/>, category: "Cerdo",stock: 20, descripcion: "Milanesas de cerdo" },
+    { id: "4", product: "Sardo con pimienta", price: 10000, image: <img src={quesosardopim} alt=""/>, category: "Quesos",stock: 20, descripcion: "Queso Sardo con pimienta" },
+    { id: "5", product: "Cremoso", price: 7000, image: <img src={quesocremoso} alt=""/>, category: "Quesos",stock: 20, descripcion: "Queso Cremoso" },
 
 ]
 

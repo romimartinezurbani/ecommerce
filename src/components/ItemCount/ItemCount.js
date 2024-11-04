@@ -3,20 +3,23 @@ import './ItemCount.css';
 import {useState} from "react";
 
 
-const  ItemCount = ({ stock, Initial, onAdd }) => {
+const  ItemCount = ({ stock, initial, onAdd }) => {
 
-    const [quantity, setQuantity] = useState(Initial);
+    const [quantity, setQuantity] = useState(initial);
 
     const increment = () => {
+        console.log(quantity)
+        console.log(stock)
         if (quantity < stock) {
-            setQuantity(quantity + 1);
+            setQuantity(prevQuantity => prevQuantity+ 1);
         }
     }
 
 
     const decrement = () => {
+        console.log(quantity)
         if (quantity > 1) {
-            setQuantity(quantity - 1);
+            setQuantity(prevQuantity => prevQuantity - 1);
             
         }
     
@@ -31,7 +34,7 @@ const  ItemCount = ({ stock, Initial, onAdd }) => {
                 <button type="button" className="btn" onClick={decrement}>-</button>
             </div>
             <div>
-                <button type='Button'className='btnagregar' onclick={() => onAdd(quantity)} disabled={!stock}>
+                <button type='Button'className='btnagregar' onClick={() => onAdd(quantity)} disabled={!stock}>
                     Agregar al carrito
                 </button>
             </div>

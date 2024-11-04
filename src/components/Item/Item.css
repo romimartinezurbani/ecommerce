@@ -1,45 +1,61 @@
 .CardItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Establece el ancho de la tarjeta */
+  height: 400px; /* Establece el alto de la tarjeta */
+}
+
+.Header {
+  background-color: #752218;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  color: #f8f6f6; /* Establece el color de la letra en el encabezado */
+  align-items: center;
+}
+
+.ItemFooter {
+  padding: 10px;
+  background-color: transparent;
+  border-top: 1px solid #ddd; /* Establece el color del borde superior */
+}
+
  
-  .Header {
-    background-color: #752218;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .ItemImg {
+
+.ItemImg {
     width: 100%;
     height: 150px;
     object-fit: cover;
     border-radius: 10px;
+    
   }
  
-  .Info {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-  }
-  
-  .ItemFooter {
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-top: 1px solid #ddd;
-  }
-  
-  .Option {
-    background-color: #fbfdfb;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+ 
+.CardItem h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.Info {
+  font-size: 14px;
+  color: #ffffff;
+ 
+}
+
+.Option {
+  font-size: 16px;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #752218; /* Establece el color de fondo del botón */
+}
+
+
     

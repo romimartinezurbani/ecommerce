@@ -1,0 +1,38 @@
+.cart-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cart-item h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .cart-item p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .cart-item button {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cart-item button:hover {
+    background-color: #e91e63;
+  }
+  
+  .cart-item .subtotal {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+    
