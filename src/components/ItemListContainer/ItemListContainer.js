@@ -6,12 +6,13 @@ import { db } from '../../config/firebase'
 
 const ItemListContainer = ({greeting}) => {
 
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([{id:"", price: 0, product: "", stock: 0}])
     const [loading, setLoading] = useState(true)
 
     const { categoryId} = useParams()
 
     useEffect(() => {
+        console.log(db)
         setLoading(true)
 
         const collectionRef = categoryId 
@@ -32,7 +33,12 @@ const ItemListContainer = ({greeting}) => {
         .finally(() => {
             setLoading(false)
         })
-    })
+    }, [])
+
+    useEffect(() => {
+        console.log(products)
+
+    }, [products])
     
 
     return (
