@@ -1,0 +1,22 @@
+
+/* CartWidget.css */
+.CartWidget {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .CartWidget img {
+    width: 25px;
+    height: 24px;
+    margin-right: 5px;
+  }
+  
+  .CartWidget span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-left: 5px;
+  }
+  
