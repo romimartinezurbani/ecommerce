@@ -18,7 +18,7 @@
     margin-bottom: 10px;
   }
   .Button {
-    background-color: #f44336;
+    background-color: #e94838;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -27,7 +27,7 @@
   }
   
   .Button:hover {
-    background-color: #e91e63;
+    background-color: #e94838;
   }
   
   .Option {
@@ -35,10 +35,18 @@
     color: #ffffff;
     font-size: 16px;
     margin-top: 10px;
-    display: block;
-  }
-  
-  .Option:hover {
-    color: #ffffff;
-  }
+    display: inline-block; /* Cambiar a inline-block para que se comporte como un botón */
+    background-color: #4E1500; /* Asegúrate de usar el color que necesitas */
+    text-align: center; /* Centrar texto horizontalmente */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer;
+    width: fit-content; /* Tamaño del botón ajustado al contenido */
+}
+
+.Option:hover {
+    background-color: #ffffff; /* Color de fondo al pasar el mouse */
+    color: #4E1500; /* Cambia el color del texto al hacer hover */
+}
+
     

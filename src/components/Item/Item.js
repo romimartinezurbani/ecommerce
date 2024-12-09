@@ -1,31 +1,21 @@
+
 import { Link } from 'react-router-dom';
-import './Item.css';
-import { useEffect, useState } from 'react';
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
-
-
-const storage = getStorage();
+import { useFirebaseImage } from '../../hooks/useFirebaseImage';
 
 const Item = ({ id, product, price, imageName, stock, descripcion }) => {
-  const [imageUrl, setImageUrl] = useState('');
+  const imgUrl = useFirebaseImage(imageName); // Utiliza el hook reutilizable
 
-  useEffect(() => {
-    const storageRef = ref(storage, `images/${imageName}`);
-    getDownloadURL(storageRef)
-      .then((url) => {
-        setImageUrl(url);
-      })
-      .catch((error) => {
-        console.error('Error al obtener la URL de descarga:', error);
-      });
-  }, [imageName]);
   return (
     <article className="CardItem">
       <header className="Header">
         <h2>{product}</h2>
       </header>
       <picture>
-        <img src={imageUrl} alt={product} className="ItemImg" />
+        {imgUrl ? (
+          <img src={imgUrl} alt={product} className="ItemImg" />
+        ) : (
+          <p>Cargando imagen...</p>
+        )}
       </picture>
       <section>
         <p className="Info">Precio: ${price}</p>
@@ -41,3 +31,4 @@ const Item = ({ id, product, price, imageName, stock, descripcion }) => {
 };
 
 export default Item;
+

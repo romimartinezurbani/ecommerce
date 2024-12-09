@@ -1,88 +1,72 @@
-import CheckoutForm from '../CheckoutForm/CheckoutForm'
-import { db } from '../../config/firebase'
-import { createContext, useContext, useEffect, useState } from 'react'
-import { collection, query, where, addDoc, documentId, getDocs, Timestamp, writeBatch } from 'firebase/firestore'
-import { CartContext } from '../../context/CartContext'
+import React, { useContext, useState } from "react";
+import { CartContext } from "../../context/CartContext";
+import { db, addDoc, collection } from "../../config/firebase";
+import CheckoutForm from '../../components/CheckoutForm/CheckoutForm';
 
 const Checkout = () => {
-    const [loading, setLoading] = useState(false)
-    const [orderId, setOrderId] = useState('')
+  const { cart, clearCart, totalPrice } = useContext(CartContext);
+  const [orderId, setOrderId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-    const { cart, total, clearCart } = useContext(CartContext)
-    
-    const createOrder =async ({ name, phone, adress }) => {
-    
-        setLoading(true)
+  const handleOrder = async (buyerData) => {
+    setLoading(true);
+  
+    const order = {
+      buyer: buyerData,
+      items: cart.map((item) => ({
+        id: item.id,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+      total: totalPrice(),
+      date: new Date(),
+    };
+  
+    console.log("Creando orden:", order); // Verifica que la orden se construya correctamente.
+    console.log("Datos del carrito:", cart);
+    console.log("Datos del comprador:", buyerData);
+    console.log("Total calculado:", totalPrice());
 
-        try {
-            const objOrder = {
-                buyer: {
-                    name, phone, adress
-                },
-                items: cart,
-                total: total,
-                date: Timestamp.fromDate(new Date())
-            }
-            const batch = writeBatch(db)
-
-            const outOfStock = []
-            const ids = cart.map(prod => prod.id)
-
-            const productsRef = collection(db, 'products')
-
-            const productsAddedFromFirestore = await getDocs(query(productsRef, where(documentId(), 'in',ids)))
-
-            const { docs } = productsAddedFromFirestore
-
-            docs.forEach(doc => {
-                const dataDoc = doc.data()
-                const stockDb = dataDoc.stock
-
-                const productAddedToCart = cart.find(prod => prod.id === doc.id)
-                const prodQuantity = productAddedToCart?.quantity
-
-                if(stockDb >= prodQuantity) {
-                    batch.update(doc.ref, { stock: stockDb - prodQuantity})
-                } else {
-                    outOfStock.push({ id: doc.id, ...dataDoc})
-                }
-
-            })
-
-            if(outOfStock.length === 0) {
-                await batch.commit()
-
-                const orderRef = collection(db, 'orders')
-
-                const orderAdded = await addDoc(orderRef, objOrder)
-
-                setOrderId(orderAdded.id)
-                clearCart()
-            } else {
-                console.log('hay productos que estan fuera del stock')
-            }
-
-        } catch (error) {
-            console.log(error)
-        } finally {
-            setLoading (false)
-        }
+  
+    try {
+      const docRef = await addDoc(collection(db, "orders"), order);
+      console.log("Orden guardada con ID:", docRef.id); // Verifica si se guarda correctamente en Firebase.
+      setOrderId(docRef.id);
+      clearCart();
+    } catch (error) {
+      console.error("Error al guardar la orden:", error); // Detecta si ocurre un error en Firebase.
+    } finally {
+      setLoading(false);
     }
-    
-    if(loading) {
-        return <h1>Se esta generando su orden</h1>
-    }
-    if(orderId) {
-        return <h1>El id de su orden es: {orderId}</h1>
-    }
+  };
+  
 
+  if (loading) {
+    return <h2>Procesando tu pedido...</h2>;
+  }
+
+  if (orderId) {
     return (
-        <div>
-            <h1>Checkout</h1>
-            <CheckoutForm onConfirm={createOrder}/>
-        </div>
+      <div>
+        <h2>¡Gracias por tu compra!</h2>
+        <p>Tu número de orden es: <strong>{orderId}</strong></p>
+      </div>
+    );
+  }
 
-    )
-}
+  if (cart.length === 0) {
+    return <h2>No tienes productos en el carrito.</h2>;
+  }
 
-export default Checkout
+  return (
+    <div>
+      <h2>Finalizar Compra</h2>
+      <CheckoutForm onConfirm={handleOrder} />
+    </div>
+  );
+};
+
+export default Checkout;
+
+
+

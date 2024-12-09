@@ -1,14 +1,18 @@
-import './ItemList.css'
-import Item from '../Item/Item'
+import './ItemList.css';
+import Item from '../Item/Item';
 
-const ItemList =({products }) => {
-    return(
-        <div className='ListGroup'>
-            {products.map(prod => <Item key={prod.id} {...prod} />)}
-    
+const ItemList = ({ products }) => {
+  if (products.length === 0) {
+    return <p>No hay productos disponibles.</p>;
+  }
 
-        </div>
-    )
-}
+  return (
+    <div className="CardList"> {/* Cambié ListGroup a CardList */}
+      {products.map((product) => (
+        <Item key={product.id} {...product} />
+      ))}
+    </div>
+  );
+};
 
-export default ItemList
+export default ItemList;

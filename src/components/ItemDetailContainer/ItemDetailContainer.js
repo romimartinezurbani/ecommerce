@@ -5,15 +5,14 @@ import { useParams } from 'react-router-dom'
 import { getDoc, doc } from 'firebase/firestore'
 import { db } from '../../config/firebase'
 
-
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
 
     const { itemId } = useParams()
 
-    useEffect (() => {
-        console.log(db)
+    useEffect(() => {
+        console.log("Conectando con Firestore...");
         setLoading(true)
 
         const docRef = doc(db, 'products', itemId)
@@ -21,22 +20,28 @@ const ItemDetailContainer = () => {
         getDoc(docRef)
         .then(response => {
             const data = response.data()
-            const productsAdapted = { id: response.id, ...data }
-            setProduct(productsAdapted)
+            const productAdapted = { id: response.id, ...data }
+            setProduct(productAdapted)
         })
-
         .catch(error => {
             console.log(error)
         })
         .finally(() => {
             setLoading(false)
         })
+    }, [itemId]) // Agregar itemId como dependencia
 
-    }, [itemId])
+    if (loading) {
+        return <p>Cargando producto...</p>
+    }
 
-    return(
+    return (
         <div className='ItemDetailContainer'>
-            <ItemDetail {...product}/>
+            {product ? (
+                <ItemDetail {...product} />
+            ) : (
+                <p>Producto no encontrado.</p>
+            )}
         </div>
     )
 }
