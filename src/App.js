@@ -7,6 +7,7 @@ import { CartProvider } from './context/CartContext'
 import About from './components/About/About'
 import Cart from './components/Cart/Cart'
 import Checkout from './components/Checkout/Checkout'
+import ContactInfo from './components/Contact/ContactInfo'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path='/item/:itemId' element={<ItemDetailContainer/>}/>
           <Route path='/cart' element={<Cart/>} />
           <Route path='/terminar' element={<Checkout/>}/>
+          <Route path='/contactInfo' element={<ContactInfo/>}/>
           <Route path='*' element={<h1>404 NOT FOUND</h1>}/>
         </Routes>
         </CartProvider>

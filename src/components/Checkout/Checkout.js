@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
-import { db, addDoc, collection } from "../../config/firebase";
-import CheckoutForm from '../../components/CheckoutForm/CheckoutForm';
+import { db } from "../../config/firebase";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import CheckoutForm from "../../components/CheckoutForm/CheckoutForm";
 
 const Checkout = () => {
   const { cart, clearCart, totalPrice } = useContext(CartContext);
@@ -10,7 +11,8 @@ const Checkout = () => {
 
   const handleOrder = async (buyerData) => {
     setLoading(true);
-  
+
+    // Construir la orden
     const order = {
       buyer: buyerData,
       items: cart.map((item) => ({
@@ -21,25 +23,36 @@ const Checkout = () => {
       total: totalPrice(),
       date: new Date(),
     };
-  
-    console.log("Creando orden:", order); // Verifica que la orden se construya correctamente.
-    console.log("Datos del carrito:", cart);
-    console.log("Datos del comprador:", buyerData);
-    console.log("Total calculado:", totalPrice());
 
-  
+    console.log("Creando orden:", order);
+
     try {
+      // Guardar la orden en Firestore
       const docRef = await addDoc(collection(db, "orders"), order);
-      console.log("Orden guardada con ID:", docRef.id); // Verifica si se guarda correctamente en Firebase.
+      console.log("Orden guardada con ID:", docRef.id);
       setOrderId(docRef.id);
-      clearCart();
+
+      // Actualizar el stock en Firestore para cada producto del carrito
+      const updateStockPromises = cart.map(async (item) => {
+        const productRef = doc(db, "product", item.id); // Ruta al producto
+        try {
+          await updateDoc(productRef, {
+            stock: item.stock - item.quantity, // Restar la cantidad comprada del stock actual
+          });
+          console.log(`Stock actualizado para producto ${item.id}`);
+        } catch (error) {
+          console.error(`Error al actualizar el stock del producto ${item.id}:`, error);
+        }
+      });
+
+      await Promise.all(updateStockPromises); // Asegurarnos de que todas las actualizaciones de stock se completen
+      clearCart(); // Limpiar el carrito después de confirmar la compra
     } catch (error) {
-      console.error("Error al guardar la orden:", error); // Detecta si ocurre un error en Firebase.
+      console.error("Error al guardar la orden o actualizar el stock:", error);
     } finally {
       setLoading(false);
     }
   };
-  
 
   if (loading) {
     return <h2>Procesando tu pedido...</h2>;
@@ -49,7 +62,10 @@ const Checkout = () => {
     return (
       <div>
         <h2>¡Gracias por tu compra!</h2>
-        <p>Tu número de orden es: <strong>{orderId}</strong></p>
+        <p>
+          Tu número de orden es: <strong>{orderId}</strong> <br />
+          Ante cualquier duda o consulta, podes comunicarte a nuestro Whatsapp <strong>3584118192</strong>
+        </p>
       </div>
     );
   }
@@ -67,6 +83,7 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
 
 
 

@@ -1,5 +1,5 @@
 import './ItemDetail.css';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 import { useFirebaseImage } from '../../hooks/useFirebaseImage'; // Hook reutilizable para imágenes
@@ -23,6 +23,7 @@ const ItemDetail = ({ id, products, imageName, category, descripcion, price, sto
   };
 
   const handleOnAdd = () => {
+    if (stock === 0) return; // Evitar agregar si no hay stock
     setQuantityAdded(count);
     const item = { id, products, price };
     addItem(item, count);
@@ -43,6 +44,7 @@ const ItemDetail = ({ id, products, imageName, category, descripcion, price, sto
       <section>
         <p className="Info">Descripción: {descripcion}</p>
         <p className="Info">Precio: ${price}</p>
+        {stock === 0 && <p className="NoStock">Sin stock disponible</p>} {/* Mensaje de sin stock */}
       </section>
       <footer className="ItemFooter">
         {quantityAdded > 0 ? (
@@ -60,7 +62,11 @@ const ItemDetail = ({ id, products, imageName, category, descripcion, price, sto
                 +
               </button>
             </div>
-            <button onClick={handleOnAdd} className="Option">
+            <button 
+              onClick={handleOnAdd} 
+              className="Option" 
+              disabled={stock === 0} // Deshabilitar si no hay stock
+            >
               Agregar al carrito
             </button>
           </div>
@@ -71,6 +77,7 @@ const ItemDetail = ({ id, products, imageName, category, descripcion, price, sto
 };
 
 export default ItemDetail;
+
 
 
 
