@@ -6,40 +6,16 @@ const CheckoutForm = ({ onConfirm }) => {
   const [phone, setPhone] = useState('');
   const [adress, setAdress] = useState('');
   const [deliveryTime, setDeliveryTime] = useState('');
-  const [needsFractions, setNeedsFractions] = useState(false); // Nuevo estado para las fracciones
-  const [fractions, setFractions] = useState([
-    { type: '1/4 Horma', quantity: 0 },
-    { type: '1/2 Horma', quantity: 0 },
-    { type: 'Horma Entera', quantity: 0 },
-    { type: 'Otra Fracción', quantity: '' },
-  ]);
+  const [medioDePago, setMedioDePago] = useState('');
   const [error, setError] = useState('');
   const [observations, setObservations] = useState('');
-
-  const handleFractionChange = (index, value) => {
-    const updatedFractions = [...fractions];
-    updatedFractions[index].quantity = value;
-    setFractions(updatedFractions);
-  };
 
   const handleConfirm = (event) => {
     event.preventDefault();
 
-    if (!name || !phone || !adress || !deliveryTime) {
+    if (!name || !phone || !adress || !deliveryTime || !medioDePago) {
       setError('Todos los campos son obligatorios.');
       return;
-    }
-
-    // Validación adicional para fracciones solo si está activada
-    if (needsFractions) {
-      const hasValidFractions = fractions.some(
-        (fraction) => fraction.quantity > 0 || (fraction.type === 'Otra Fracción' && fraction.quantity !== '')
-      );
-
-      if (!hasValidFractions) {
-        setError('Por favor, ingresa al menos una fracción válida.');
-        return;
-      }
     }
 
     const userData = { 
@@ -47,7 +23,8 @@ const CheckoutForm = ({ onConfirm }) => {
       phone, 
       adress, 
       deliveryTime, 
-      fractions: needsFractions ? fractions : null // Incluye fracciones solo si están activadas
+      medioDePago,
+      observations,
     };
 
     console.log("Datos del formulario:", userData);
@@ -107,41 +84,22 @@ const CheckoutForm = ({ onConfirm }) => {
           />
         </label>
 
-        {/* Nuevo selector para fracciones */}
-        <div className="Label">
-          <label>
-            <input
-              type="checkbox"
-              checked={needsFractions}
-              onChange={() => setNeedsFractions(!needsFractions)}
-            />
-            ¿Quieres especificar fracciones? (Solo en el caso de Quesos)
-          </label>
-        </div>
+        {/* Medio de Pago */}
+        <label className="Label">
+          Medio de Pago
+          <select
+            className="Input"
+            value={medioDePago}
+            onChange={({ target }) => setMedioDePago(target.value)}
+          >
+            <option value="">Seleccione una opción</option>
+            <option value="Transferencia">Transferencia</option>
+            <option value="Efectivo">Efectivo</option>
+          </select>
+        </label>
 
-        {/* Sección de fracciones (opcional) */}
-        {needsFractions && (
-          <div className="FractionsSection">
-            <h4>Especifica las fracciones:</h4>
-            {fractions.map((fraction, index) => (
-              <div key={fraction.type} className="FractionRow">
-                <label>
-                  {fraction.type}
-                  <input
-                    type={fraction.type === 'Otra Fracción' ? 'text' : 'number'}
-                    className="Input"
-                    placeholder={fraction.type === 'Otra Fracción' ? "Especificar..." : "Cantidad"}
-                    value={fraction.quantity}
-                    onChange={(e) => handleFractionChange(index, e.target.value)}
-                  />
-                </label>
-              </div>
-            ))}
-          </div>
-        )}
-
-         {/* Campo de Observaciones */}
-         <label className="Label">
+        {/* Campo de Observaciones */}
+        <label className="Label">
           Observaciones (opcional)
           <textarea
             className="Input"
@@ -163,6 +121,7 @@ const CheckoutForm = ({ onConfirm }) => {
 };
 
 export default CheckoutForm;
+
 
 
 

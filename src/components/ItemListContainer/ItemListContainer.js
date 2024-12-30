@@ -12,7 +12,9 @@ const ItemListContainer = ({ greeting }) => {
     
     // Asegúrate de que categoryId tiene el valor correcto
     useEffect(() => {
+        console.log("URL actual:", window.location.pathname);
         console.log("Category ID:", categoryId);  // Verifica el valor del categoryId en la URL
+
 
         setLoading(true);
 

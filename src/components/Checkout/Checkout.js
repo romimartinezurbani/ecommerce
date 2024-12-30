@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { db } from "../../config/firebase";
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc, getDoc } from "firebase/firestore";
 import CheckoutForm from "../../components/CheckoutForm/CheckoutForm";
 
 const Checkout = () => {
@@ -34,14 +34,47 @@ const Checkout = () => {
 
       // Actualizar el stock en Firestore para cada producto del carrito
       const updateStockPromises = cart.map(async (item) => {
-        const productRef = doc(db, "product", item.id); // Ruta al producto
+        const productRef = doc(db, "products", item.id); // Ruta al producto
+
         try {
-          await updateDoc(productRef, {
-            stock: item.stock - item.quantity, // Restar la cantidad comprada del stock actual
-          });
-          console.log(`Stock actualizado para producto ${item.id}`);
+          // Obtener el producto de Firestore
+          const productSnap = await getDoc(productRef);
+          if (!productSnap.exists()) {
+            console.error(`Producto con ID ${item.id} no encontrado.`);
+            throw new Error(`Producto con ID ${item.id} no encontrado.`);
+          }
+
+          const currentStock = Number(productSnap.data().stock); // Asegurarse de que el stock es un número
+          const quantityPurchased = Number(item.quantity);
+
+          if (isNaN(currentStock) || isNaN(quantityPurchased)) {
+            console.error(
+              `Valores inválidos detectados: stock=${currentStock}, cantidad=${quantityPurchased}`
+            );
+            throw new Error("Valores inválidos en la actualización del stock.");
+          }
+
+          if (currentStock >= quantityPurchased) {
+            const newStock = currentStock - quantityPurchased;
+
+            await updateDoc(productRef, {
+              stock: newStock,
+            });
+
+            console.log(`Stock actualizado para producto ${item.id}`);
+          } else {
+            console.error(
+              `Stock insuficiente para producto ${item.id}. Stock actual: ${currentStock}`
+            );
+            alert(
+              `El producto "${item.id}" no tiene suficiente stock. Stock disponible: ${currentStock}`
+            );
+          }
         } catch (error) {
-          console.error(`Error al actualizar el stock del producto ${item.id}:`, error);
+          console.error(
+            `Error al actualizar el stock del producto ${item.id}:`,
+            error
+          );
         }
       });
 
@@ -64,7 +97,8 @@ const Checkout = () => {
         <h2>¡Gracias por tu compra!</h2>
         <p>
           Tu número de orden es: <strong>{orderId}</strong> <br />
-          Ante cualquier duda o consulta, podes comunicarte a nuestro Whatsapp <strong>3584118192</strong>
+          Ante cualquier duda o consulta, puedes comunicarte a nuestro WhatsApp{" "}
+          <strong>3584118192</strong>
         </p>
       </div>
     );
