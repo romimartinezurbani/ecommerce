@@ -9,7 +9,7 @@ const About = () => {
 
 
   return (
-    <div className='contenedor'>
+    <div className='contenedor container'>
       <h1>¿Quiénes somos?</h1>
       
       <img src={nosotros} alt="" className="nosotros" />

@@ -7,10 +7,18 @@
     cursor: pointer;
   }
   
-  .CartWidget img {
+  .CartWidget img, i{
+    display: block;
     width: 25px;
-    height: 24px;
+    height: 25px;
+    color: #ffffff;
     margin-right: 5px;
+  }
+
+  a:hover>i,
+  a:hover>span {
+    color: #b32c1d;
+    transition: color ease-in-out 0.3s;
   }
   
   .CartWidget span {

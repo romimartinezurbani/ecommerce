@@ -10,7 +10,7 @@ const CartWidget = () => {
   return (
     <div className="CartWidget">
       <Link to='/cart'>
-        <img src={cart} alt="" />
+        <i class="fa-solid fa-cart-shopping"></i>
         <span>{totalQuantity}</span>
       </Link>
     </div>
