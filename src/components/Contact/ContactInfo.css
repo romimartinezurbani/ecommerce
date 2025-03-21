@@ -1,0 +1,25 @@
+.contact-info {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  .contact-details p {
+    margin: 5px 0;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  .icon {
+    width: 40px; /* Tamaño del ícono */
+    height: 40px; /* Tamaño del ícono */
+    transition: transform 0.3s; /* Animación */
+  }
+  
+  .icon:hover {
+    transform: scale(1.2); /* Efecto al pasar el mouse */
+  }
+  
