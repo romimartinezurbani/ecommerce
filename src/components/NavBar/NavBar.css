@@ -124,6 +124,7 @@
     background-color: #752218;
     padding: 10px;
     border-radius: 10px;
+    z-index: 1111111;
   }
 
   .container-burguer-cart {

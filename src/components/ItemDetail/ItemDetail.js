@@ -57,7 +57,7 @@ const ItemDetail = ({ id, products, imageName, category, descripcion, price, sto
               <button onClick={handleDecrement} disabled={count <= 1}>
                 -
               </button>
-              <span>{count}</span>
+              <span className='count'>{count}</span>
               <button onClick={handleIncrement} disabled={count >= stock}>
                 +
               </button>

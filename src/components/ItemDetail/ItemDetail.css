@@ -78,6 +78,16 @@ picture>p{
   background-color: #751100;
 }
 
+.contador {
+  display: flex;
+  flex-direction: column;
+}
+
+.count {
+  width: 100%;
+  text-align: center;
+}
+
 /* Media Queries para responsividad */
 @media (max-width: 1200px) {
   .CardItem {

@@ -1,6 +1,6 @@
 /* Estilo del contenedor principal */
 .CardList {
-  height: 100vh;
+  height: auto;
   display: flex; /* Habilita flexbox */
   flex-wrap: wrap; /* Permite que los items salten a otra fila si no caben */
   justify-content: center; /* Centra las tarjetas horizontalmente */

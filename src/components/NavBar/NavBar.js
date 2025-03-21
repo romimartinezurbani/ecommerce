@@ -29,7 +29,7 @@ const NavBar = () => {
         <NavLink to={`/About`} className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>¿Quiénes somos?</NavLink>
         
         <div className="dropdown">
-          <NavLink to="#" className={({ isActive }) => isActive ? 'ActiveOption dropdown-btn' : 'Option dropdown-btn'}>
+          <NavLink className={({ isActive }) => isActive ? 'ActiveOption dropdown-btn' : 'Option dropdown-btn'}>
             Nuestros Productos
           </NavLink>
           <div className="dropdown-content">
