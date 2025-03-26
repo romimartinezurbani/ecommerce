@@ -1,15 +1,11 @@
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
+import { db } from "../config/firebase";
 
-// Función para verificar si un usuario es admin
 export const isAdmin = async (uid) => {
-  const db = getFirestore();
-  const userRef = doc(db, "users", uid); // Referencia al documento del usuario
-  const userSnap = await getDoc(userRef);
-
-  if (userSnap.exists()) {
-    const userData = userSnap.data();
-    return userData.role === "admin"; // Devuelve true si el rol es 'admin'
+  const userDoc = await getDoc(doc(db, "users", uid));
+  if (userDoc.exists()) {
+    const userData = userDoc.data();
+    return userData.role === "admin";
   }
-
-  return false; // Devuelve false si el documento no existe o no tiene rol 'admin'
+  return false;
 };

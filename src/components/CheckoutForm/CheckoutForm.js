@@ -35,6 +35,10 @@ const CheckoutForm = ({ onConfirm }) => {
     <div className="Container">
       <form onSubmit={handleConfirm} className="Form">
         {error && <p style={{ color: 'red' }}>{error}</p>}
+
+        <p className="InfoText">
+        TODOS LOS PRODUCTOS SON VENDIDOS POR PESO, POR LO CUAL, EL VALOR TOTAL ES ESTIMATIVO. EN CUANTO SE PREPARE EL PEDIDO, SE LE ENVIARA UN REMITO CON EL PESO Y MONTO EXACTO A PAGAR
+        </p>
         
         <p className="InfoText">
           Por favor, complete todos los campos del formulario.<br />
@@ -47,7 +51,7 @@ const CheckoutForm = ({ onConfirm }) => {
 
         {/* Campos básicos */}
         <label className="Label">
-          Nombre
+          Nombre y Apellido
           <input
             className="Input"
             type="text"
@@ -73,16 +77,7 @@ const CheckoutForm = ({ onConfirm }) => {
             onChange={({ target }) => setAdress(target.value)}
           />
         </label>
-        <label className="Label">
-          Horario de Entrega
-          <input
-            className="Input"
-            type="text"
-            placeholder="Ej: 10:00 AM - 2:00 PM"
-            value={deliveryTime}
-            onChange={({ target }) => setDeliveryTime(target.value)}
-          />
-        </label>
+    
 
         {/* Medio de Pago */}
         <label className="Label">

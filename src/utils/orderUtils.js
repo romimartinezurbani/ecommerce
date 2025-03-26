@@ -15,7 +15,7 @@ export const exportOrders = async () => {
       const buyer = data.buyer
         ? {
             name: data.buyer.name || "N/A",
-            address: data.buyer.adress || "N/A",
+            address: data.buyer.address || "N/A",
             phone: data.buyer.phone || "N/A",
           }
         : { name: "N/A", address: "N/A", phone: "N/A" };
