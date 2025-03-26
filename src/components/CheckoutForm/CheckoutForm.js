@@ -41,6 +41,12 @@ const CheckoutForm = ({ onConfirm }) => {
         </p>
         
         <p className="InfoText">
+        Costo de Envio: $750.
+        </p>
+        <p className="InfoText">
+        Envio GRATIS en compras SUPERIORES A $50000
+        </p>
+        <p className="InfoText">
           Por favor, complete todos los campos del formulario.<br />
           Recuerde incluir un horario de entrega conveniente para usted.<br />
           🌱 Teniendo en cuenta que los pedidos se toman con 24 hs de anticipación.<br />
