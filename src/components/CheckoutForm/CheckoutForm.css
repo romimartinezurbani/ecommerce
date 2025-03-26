@@ -1,52 +1,92 @@
 .Container {
-    max-height: 70vh; /* Limitar altura del contenedor al 70% de la ventana */
-    overflow-y: auto; /* Agregar barra de desplazamiento vertical si es necesario */
-    padding: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    border-radius: 8px;
-    position: fixed;
-    top: 30%; /* Ajustar este valor según la altura del navbar */
-    left: 30%;
+  max-height: 70vh; /* Limitar altura del contenedor */
+  overflow-y: auto; /* Agregar barra de desplazamiento si es necesario */
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%); /* Centrar horizontalmente */
+  width: 90%; /* Ajuste para dispositivos móviles */
+  max-width: 400px; /* No exceder este tamaño en pantallas grandes */
+}
+
+.InfoText {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+  padding: 0.75rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  line-height: 1.4;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.Input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.Button {
+  background-color: #752218;
+  color: white;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Button:hover {
+  background-color: #5e1b14;
+}
+
+/* Media queries para hacerlo más responsivo */
+@media (max-width: 768px) {
+  .Container {
+      top: 20%;
+      width: 95%;
+      max-width: 350px;
   }
-  
+
   .InfoText {
-    font-size: 0.8rem; /* Reducir el tamaño del texto */
-    color: #555;
-    margin-bottom: 1rem;
-    background-color: #f9f9f9;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    line-height: 1.4; /* Mejorar la legibilidad del texto */
+      font-size: 0.85rem;
   }
-  
-  .Form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem; /* Espaciado entre los elementos del formulario */
+
+  .Input, .Button {
+      font-size: 0.9rem;
+      padding: 0.65rem;
   }
-  
-  .Input {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 0.9rem; /* Tamaño adecuado para los campos de entrada */
-    border: 1px solid #ddd;
-    border-radius: 5px;
+}
+
+@media (max-width: 480px) {
+  .Container {
+      top: 15%;
+      width: 90%;
+      max-width: 300px;
   }
-  
-  .Button {
-    background-color: #752218;
-    color: white;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+
+  .InfoText {
+      font-size: 0.8rem;
+      padding: 0.5rem;
   }
-  
-  .Button:hover {
-    background-color: #5e1b14;
+
+  .Input, .Button {
+      font-size: 0.85rem;
+      padding: 0.6rem;
   }
+}
+
   
