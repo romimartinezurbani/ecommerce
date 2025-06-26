@@ -4,7 +4,7 @@ import { useState } from 'react';
 const CheckoutForm = ({ onConfirm }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [adress, setAdress] = useState('');
+  const [address, setAddress] = useState('');
   const [medioDePago, setMedioDePago] = useState('');
   const [error, setError] = useState('');
   const [observations, setObservations] = useState('');
@@ -12,7 +12,7 @@ const CheckoutForm = ({ onConfirm }) => {
   const handleConfirm = (event) => {
     event.preventDefault();
 
-    if (!name || !phone || !adress  || !medioDePago) {
+    if (!name || !phone || !address  || !medioDePago) {
       setError('Todos los campos son obligatorios.');
       return;
     }
@@ -20,7 +20,7 @@ const CheckoutForm = ({ onConfirm }) => {
     const userData = { 
       name, 
       phone, 
-      adress,
+      address,
       medioDePago,
       observations,
     };
@@ -77,8 +77,8 @@ const CheckoutForm = ({ onConfirm }) => {
           <input
             className="Input"
             type="text"
-            value={adress}
-            onChange={({ target }) => setAdress(target.value)}
+            value={address}
+            onChange={({ target }) => setAddress(target.value)}
           />
         </label>
     
