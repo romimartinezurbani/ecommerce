@@ -10,6 +10,7 @@ const Checkout = () => {
   const [loading, setLoading] = useState(false);
 
   const handleOrder = async (buyerData) => {
+    console.log("Comprador recibido:", buyerData); // 👈 clave
     setLoading(true);
 
     // Construir la orden
