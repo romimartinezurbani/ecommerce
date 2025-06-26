@@ -5,7 +5,6 @@ const CheckoutForm = ({ onConfirm }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [adress, setAdress] = useState('');
-  const [deliveryTime, setDeliveryTime] = useState('');
   const [medioDePago, setMedioDePago] = useState('');
   const [error, setError] = useState('');
   const [observations, setObservations] = useState('');
@@ -13,7 +12,7 @@ const CheckoutForm = ({ onConfirm }) => {
   const handleConfirm = (event) => {
     event.preventDefault();
 
-    if (!name || !phone || !adress || !deliveryTime || !medioDePago) {
+    if (!name || !phone || !adress  || !medioDePago) {
       setError('Todos los campos son obligatorios.');
       return;
     }
@@ -21,8 +20,7 @@ const CheckoutForm = ({ onConfirm }) => {
     const userData = { 
       name, 
       phone, 
-      adress, 
-      deliveryTime, 
+      adress,
       medioDePago,
       observations,
     };
@@ -50,8 +48,8 @@ const CheckoutForm = ({ onConfirm }) => {
           Por favor, complete todos los campos del formulario.<br />
           Recuerde incluir un horario de entrega conveniente para usted.<br />
           🌱 Teniendo en cuenta que los pedidos se toman con 24 hs de anticipación.<br />
-          🌱 Envíos en Banda Norte y Las Higueras miércoles por la mañana y viernes por la tarde.<br />
-          🌱 Río Cuarto (centro y alrededores) miércoles por la tarde y viernes por la mañana.<br />
+          🌱 Envíos en Banda Norte y Las Higueras lunes por la tarde, miércoles por la mañana y viernes por la tarde.<br />
+          🌱 Río Cuarto (centro y alrededores) lunes por la tarde, miércoles por la tarde y viernes por la mañana.<br />
           🌱 Recuerden enviar el comprobante de transferencia antes o al momento de recibir los productos para evitar los recargos por demora.
         </p>
 
